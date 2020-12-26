@@ -19,7 +19,7 @@ export default {
   components: { Spinner },
   setup(props) {
     const route = useRoute()
-    console.log(route)
+    // console.log(route)
 
     // const { error, post, load } = getPost(props.id)
     const { error, post, load } = getPost(route.params.id)
