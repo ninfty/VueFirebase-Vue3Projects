@@ -21,6 +21,7 @@ export default {
     const route = useRoute()
     console.log(route)
 
+    // const { error, post, load } = getPost(props.id)
     const { error, post, load } = getPost(route.params.id)
 
     load()

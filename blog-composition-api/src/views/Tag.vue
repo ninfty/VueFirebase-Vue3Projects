@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
+  <div class="tag">
     <div v-if="error">{{ error }}</div>
     <div v-if="posts.length">
-      <PostList :posts="posts" />
+      <PostList :posts="postsWithTag" />
     </div>
     <div v-else>
       <Spinner />
@@ -11,27 +11,29 @@
 </template>
 
 <script>
-import PostList from '../components/PostList'
 import Spinner from '../components/Spinner'
+import PostList from '../components/PostList'
 import getPosts from '../composables/getPosts'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
 export default {
-  name: 'Home',
   components: { PostList, Spinner },
   setup() {
+    const route = useRoute()
     const { posts, error, load } = getPosts()
 
     load()
+
+    const postsWithTag = computed(() => {
+      return posts.value.filter((post) => post.tags.includes(route.params.tag))
+    })
     
-    return { posts, error }
-  },
+    return { error, posts, postsWithTag }
+  }
 }
 </script>
 
 <style>
-.home {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px;
-}
+
 </style>
