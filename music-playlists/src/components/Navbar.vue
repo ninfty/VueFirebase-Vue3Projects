@@ -2,9 +2,10 @@
   <div class="navbar">
     <nav>
       <img src="@/assets/logo.png"/>
-      <h1><router-link :to="{ name: 'Home' }">Music Playlists</router-link></h1>
+      <h1><router-link :to="{ name: 'Home' }">Muso Ninjas</router-link></h1>
       <div class="links">
         <div v-if="user">
+          <router-link :to="{ name: 'CreatePlaylist' }">Create Playlist</router-link>
           <button @click="handleClick">Logout</button>
         </div>
         <div v-else>
