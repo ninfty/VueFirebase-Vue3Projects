@@ -2,7 +2,7 @@
   <div class="add-song">
     <button v-if="!showForm" @click="showForm = true">Add Songs</button>
     <form v-if="showForm" @submit.prevent="handleSubmit">
-      <h4>Add a New Song</h4>
+      <h4>Add a New Song <span class="close-form-button" @click="closeForm">X</span></h4>
       <input type="text" placeholder="Song title" required v-model="title">
       <input type="text" placeholder="Artist" required v-model="artist">
       <button>Add</button>
@@ -35,7 +35,11 @@ export default {
       artist.value = ''
     }
 
-    return { title, artist, showForm, handleSubmit }
+    const closeForm = async () => {
+      showForm.value = false
+    }
+
+    return { title, artist, showForm, handleSubmit, closeForm }
   }
 }
 </script>
@@ -48,5 +52,19 @@ export default {
   form {
     max-width: 100%;
     text-align: left;
+  }
+  .close-form-button {
+    cursor: pointer;
+    background: var(--secondary);
+    border-radius: 8px;
+    border: 0;
+    padding: 8px 12px;
+    margin-top: -8px;
+    font-weight: 600;
+    float: right;
+  }
+  .close-form-button:hover {
+    background: var(--primary);
+    color: white;
   }
 </style>
