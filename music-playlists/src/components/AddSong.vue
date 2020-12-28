@@ -37,6 +37,8 @@ export default {
 
     const closeForm = async () => {
       showForm.value = false
+      title.value = ''
+      artist.value = ''
     }
 
     return { title, artist, showForm, handleSubmit, closeForm }
